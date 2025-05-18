@@ -89,18 +89,12 @@ class QLearningAgent(ReinforcementAgent):
         if not legalActions:
           return None
         bestValue = self.computeValueFromQValues(state)
-        
-        # caso tenha mais de uma acao melhor, 
-        # nao acho que seja necessario essa abordagem
-        # bestActions = []  
-        # for action in legalActions:
-        #     if self.getQValue(state, action) == bestValue:
-        #         bestActions.append(action)
-
-        # return random.choice(bestActions)
+        bestActions = []  
         for action in legalActions:
           if self.getQValue(state, action) == bestValue:
-            return action
+            bestActions.append(action)
+
+        return random.choice(bestActions)
 
     def getAction(self, state):
         """
